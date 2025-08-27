@@ -1,5 +1,5 @@
 {
-  "name": "recursivetree/seat-wanderer-acl",
+  "name": "recursivetree/seat-wanderer-connector",
   "description": "Monitor ratting usage in systems",
   "license": "GPL-2.0-or-later",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "RecursiveTree\\Seat\\WandererAcl\\": "src/"
+      "RecursiveTree\\Seat\\WandererAccessSync\\": "src/"
     }
   },
   "minimum-stability": "dev",
@@ -20,13 +20,12 @@
     "laravel/framework": "^10.0",
     "eveseat/web": "^5.0",
     "eveseat/eveapi": "^5.0",
-    "eveseat/services": "^5.0",
-    "recursivetree/seat-treelib": "^2.0"
+    "eveseat/services": "^5.0"
   },
   "extra": {
     "laravel": {
       "providers": [
-        "RecursiveTree\\Seat\\WandererAcl\\WandererAclServiceProvider"
+        "RecursiveTree\\Seat\\WandererAccessSync\\WandererAccessSyncServiceProvider"
       ]
     }
   }

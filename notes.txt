@@ -1,0 +1,12 @@
+- api allows getting members
+- api allows adding any member, even if not registered
+- api doesn't allow adding already added members
+
+
+Ideal Design
+- roles_wanderer_access_list
+    - id
+    - role_id integer unsigned foreign
+    - wanderer_server
+    - access_list_id
+    - access_list_token
