@@ -25,9 +25,9 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
         ]);
 
         Artisan::command('wanderer:sync', function (){
-            $roles = WandererAccessListRole::all();
-            foreach ($roles as $role){
-                WandererFullSync::dispatch($role);
+            $access_list_ids = WandererAccessListRole::select('access_list_id')->distinct()->pluck('access_list_id');
+            foreach ($access_list_ids as $access_list_id){
+                WandererFullSync::dispatch($access_list_id);
             }
         });
     }
