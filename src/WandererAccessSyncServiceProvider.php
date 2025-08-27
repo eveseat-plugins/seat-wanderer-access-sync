@@ -12,9 +12,11 @@ use Seat\Services\AbstractSeatPlugin;
 class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
 {
     public function boot(){
-//        if (! $this->app->routesAreCached()) {
-//            include __DIR__ . '/Http/routes.php';
-//        }
+        if (! $this->app->routesAreCached()) {
+            include __DIR__ . '/Http/routes.php';
+        }
+
+        $this->loadViewsFrom(__DIR__ . '/resources/views/', 'wanderer-access-sync');
 
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
 
@@ -31,7 +33,8 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
     }
 
     public function register(){
-
+        $this->registerPermissions(__DIR__ . '/Config/permissions.php', 'wanderer-access-sync');
+        $this->mergeConfigFrom(__DIR__ . '/Config/sidebar.php','package.sidebar');
     }
 
     public function getName(): string

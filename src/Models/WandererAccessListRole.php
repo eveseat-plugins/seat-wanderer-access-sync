@@ -14,7 +14,7 @@ use Seat\Web\Models\Acl\Role;
  */
 class WandererAccessListRole extends ExtensibleModel
 {
-    public $timestamps = true;
+    public $timestamps = false;
     protected $table = 'seat_wanderer_access_sync_roles';
 
     public function role()
