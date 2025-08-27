@@ -1,5 +1,5 @@
 {
-  "name": "recursivetree/seat-wanderer-connector",
+  "name": "recursivetree/seat-wanderer-access-sync",
   "description": "Monitor ratting usage in systems",
   "license": "GPL-2.0-or-later",
   "authors": [
