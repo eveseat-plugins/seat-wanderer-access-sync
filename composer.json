@@ -10,7 +10,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "RecursiveTree\\Seat\\WandererAccessSync\\": "src/"
+      "RecursiveTree\\Seat\\WandererAccessSync\\": "src/",
+      "RecursiveTree\\Seat\\WandererAccessSync\\Seeders\\": "src/database/seeders/"
     }
   },
   "minimum-stability": "dev",

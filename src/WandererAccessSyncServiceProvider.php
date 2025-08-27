@@ -5,7 +5,7 @@ namespace RecursiveTree\Seat\WandererAccessSync;
 use Illuminate\Support\Facades\Artisan;
 use RecursiveTree\Seat\WandererAccessSync\Jobs\WandererFullSync;
 use RecursiveTree\Seat\WandererAccessSync\Models\WandererAccessListRole;
-use RecursiveTree\Seat\WandererAcl\Listeners\UserRoleAddedListener;
+use RecursiveTree\Seat\WandererAccessSync\Seeders\ScheduleSeeder;
 use Seat\Services\AbstractSeatPlugin;
 
 
@@ -17,6 +17,10 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
 //        }
 
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
+
+        $this->registerDatabaseSeeders([
+            ScheduleSeeder::class
+        ]);
 
         Artisan::command('wanderer:sync', function (){
             $roles = WandererAccessListRole::all();
