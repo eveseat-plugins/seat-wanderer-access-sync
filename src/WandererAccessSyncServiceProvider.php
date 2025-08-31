@@ -17,7 +17,7 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
         }
 
         $this->loadViewsFrom(__DIR__ . '/resources/views/', 'wanderer-access-sync');
-
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang/', 'wanderer-access-sync');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
 
         $this->registerDatabaseSeeders([
