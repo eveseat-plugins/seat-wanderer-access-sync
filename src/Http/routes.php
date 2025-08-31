@@ -18,4 +18,10 @@ Route::group([
         'uses' => 'SettingsController@createMapping',
         'middleware' => 'can:wanderer-access-sync.edit'
     ]);
+
+    Route::post('/settings/accesslist', [
+        'as'   => 'wanderer-access-sync::createWandererAccessList',
+        'uses' => 'SettingsController@createWandererAccessList',
+        'middleware' => 'can:wanderer-access-sync.edit'
+    ]);
 });
