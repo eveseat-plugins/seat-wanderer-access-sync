@@ -1,4 +1,4 @@
-# seat-wanderer-connector
+# seat-wanderer-access-sync
 
 ## Why not integrate into seat-connector?
 I've tried adding a wanderer connector for seat-connector, but the way wanderer ACLs work don't map well to what seat-connector expects.
