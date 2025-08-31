@@ -7,9 +7,7 @@ use Seat\Services\Models\ExtensibleModel;
 use Seat\Web\Models\Acl\Role;
 
 /**
- * @property string $wanderer_url
- * @property string $access_list_id
- * @property string $access_list_token
+ * @property WandererAccessListInstance $accessList
  * @property Role $role
  */
 class WandererAccessListRole extends ExtensibleModel
@@ -17,13 +15,13 @@ class WandererAccessListRole extends ExtensibleModel
     public $timestamps = false;
     protected $table = 'seat_wanderer_access_sync_roles';
 
-    public function role()
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function getAccessList(): WandererAccessList
+    public function accessList()
     {
-        return new WandererAccessList($this->access_list_id, $this->access_list_token, $this->wanderer_url);
+        return $this->belongsTo(WandererAccessListInstance::class,'wanderer_instance_id','id');
     }
 }

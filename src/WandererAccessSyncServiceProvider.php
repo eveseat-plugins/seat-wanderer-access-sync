@@ -3,7 +3,8 @@
 namespace RecursiveTree\Seat\WandererAccessSync;
 
 use Illuminate\Support\Facades\Artisan;
-use RecursiveTree\Seat\WandererAccessSync\Jobs\WandererFullSync;
+use RecursiveTree\Seat\WandererAccessSync\Jobs\UpdateWandererInstance;
+use RecursiveTree\Seat\WandererAccessSync\Models\WandererAccessListInstance;
 use RecursiveTree\Seat\WandererAccessSync\Models\WandererAccessListRole;
 use RecursiveTree\Seat\WandererAccessSync\Seeders\ScheduleSeeder;
 use Seat\Services\AbstractSeatPlugin;
@@ -25,9 +26,9 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
         ]);
 
         Artisan::command('wanderer:sync', function (){
-            $access_list_ids = WandererAccessListRole::select('access_list_id')->distinct()->pluck('access_list_id');
-            foreach ($access_list_ids as $access_list_id){
-                WandererFullSync::dispatch($access_list_id);
+            $access_lists = WandererAccessListInstance::all();
+            foreach ($access_lists as $access_list){
+                UpdateWandererInstance::dispatchSync($access_list);
             }
         });
     }

@@ -6,29 +6,30 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use RecursiveTree\Seat\WandererAccessSync\Driver\WandererAccessList;
+use RecursiveTree\Seat\WandererAccessSync\Models\WandererAccessListInstance;
 use RecursiveTree\Seat\WandererAccessSync\Models\WandererAccessListRole;
 use Seat\Eveapi\Models\RefreshToken;
-use Seat\Web\Models\User;
 
-class WandererFullSync implements ShouldQueue
+class UpdateWandererInstance implements ShouldQueue
 {
     use Queueable, InteractsWithQueue, Dispatchable;
 
-    private string $access_list_id;
+    private WandererAccessListInstance $accessListInstance;
 
     /**
-     * @param WandererAccessListRole $access_list_role
+     * @param WandererAccessListInstance $accessListInstance
      */
-    public function __construct(string $access_list_id)
+    public function __construct(WandererAccessListInstance $accessListInstance)
     {
-        $this->access_list_id = $access_list_id;
+        $this->accessListInstance = $accessListInstance;
     }
 
     public function handle()
     {
         // since the access list id is a UUID, we can assume it is unique even across wanderer installs
-        $access_list_roles = WandererAccessListRole::with(['role'])->where('access_list_id', $this->access_list_id)->get();
+        $access_list_roles = WandererAccessListRole::with(['role'])
+            ->where('wanderer_instance_id', $this->accessListInstance->id)
+            ->get();
         if($access_list_roles->isEmpty()) return;
 
         $user_ids = collect();
@@ -36,7 +37,7 @@ class WandererFullSync implements ShouldQueue
             $user_ids = $user_ids->merge($role->role->users()->pluck('id'));
         }
 
-        $access_list = $access_list_roles->first()->getAccessList();
+        $access_list = $this->accessListInstance->getAccessList();
         $access_list->seedMembers();
 
         $allowed_character_ids = RefreshToken::whereIn('user_id',$user_ids)->pluck('character_id');
