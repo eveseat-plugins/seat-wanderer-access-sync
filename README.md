@@ -1,4 +1,11 @@
 # seat-wanderer-access-sync
+A SeAT plugin to synchronize SeAT roles to wanderer access lists.
+
+## Installation
+The normal [package installation](https://eveseat.github.io/docs/community_packages/) steps apply.
+
+The plugin name is `recursivetree/seat-wanderer-access-sync`.
+
 
 ## Why not integrate into seat-connector?
 I've tried adding a wanderer connector for seat-connector, but the way wanderer ACLs work don't map well to what seat-connector expects.
