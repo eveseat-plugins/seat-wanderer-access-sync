@@ -16,6 +16,11 @@ class UpdateWandererInstance implements ShouldQueue
 
     private WandererAccessListInstance $accessListInstance;
 
+    public function tags(): array
+    {
+        return ["seat-wanderer-access-sync"];
+    }
+
     /**
      * @param WandererAccessListInstance $accessListInstance
      */

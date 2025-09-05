@@ -28,7 +28,7 @@ class WandererAccessSyncServiceProvider extends AbstractSeatPlugin
         Artisan::command('wanderer:sync', function (){
             $access_lists = WandererAccessListInstance::all();
             foreach ($access_lists as $access_list){
-                UpdateWandererInstance::dispatchSync($access_list);
+                UpdateWandererInstance::dispatch($access_list);
             }
         });
     }
