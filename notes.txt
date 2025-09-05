@@ -1,8 +1,4 @@
 Todo
-- schema: split into wanderer acl+role mapping
-- clean UI
-- delete instances/mappings
-- localize UI
 - readme
 - ui: use wanderer access list names
 - don't allow adding same role twice/silently drop it

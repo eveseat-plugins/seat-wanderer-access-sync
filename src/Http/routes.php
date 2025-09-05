@@ -19,9 +19,21 @@ Route::group([
         'middleware' => 'can:wanderer-access-sync.edit'
     ]);
 
+    Route::post('/settings/mapping/delete', [
+        'as'   => 'wanderer-access-sync::deleteMapping',
+        'uses' => 'SettingsController@deleteMapping',
+        'middleware' => 'can:wanderer-access-sync.edit'
+    ]);
+
     Route::post('/settings/accesslist', [
         'as'   => 'wanderer-access-sync::createWandererAccessList',
         'uses' => 'SettingsController@createWandererAccessList',
+        'middleware' => 'can:wanderer-access-sync.edit'
+    ]);
+
+    Route::post('/settings/accesslist/delete', [
+        'as'   => 'wanderer-access-sync::deleteInstance',
+        'uses' => 'SettingsController@deleteInstance',
         'middleware' => 'can:wanderer-access-sync.edit'
     ]);
 });

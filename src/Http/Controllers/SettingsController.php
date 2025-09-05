@@ -55,4 +55,26 @@ class SettingsController extends Controller
 
         return redirect()->back()->with('success','Successfully added wanderer access list');
     }
+
+    public function deleteMapping(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        WandererAccessListRole::destroy($request->id);
+
+        return  redirect()->back()->with('success','Successfully deleted role mapping.');
+    }
+
+    public function deleteInstance(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        WandererAccessListInstance::destroy($request->id);
+
+        return  redirect()->back()->with('success','Successfully deleted role mapping.');
+    }
 }
